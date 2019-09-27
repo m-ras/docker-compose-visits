@@ -1,0 +1,12 @@
+# We want to create two images, one for redis-server and one for our NodeJS app
+# These two images will have free access to eachother automatically due to
+# our use of docker compose.
+version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: always
+    build: . # Look in the current directory and build the Dockerfile image
+    ports: 
+      - "4001:8081" # Map local machine port 4001 to the container port 8081
